@@ -1,0 +1,9 @@
+# Amazon Braket SDK for quantum computing
+amazon-braket-sdk>=1.94.0
+
+# AWS CLI for credential management
+awscli>=1.40.0
+
+# Core dependencies (automatically installed with braket-sdk)
+boto3>=1.28.53
+numpy>=1.20.0 
