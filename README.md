@@ -318,4 +318,83 @@ If you use this repository in your research, education, or software, please cite
 ## Unit Testing
 
 Run the complete test suite:
+
+This project serves as a hands-on introduction to quantum computing using the Amazon Braket SDK. It includes experiments that can be run on local simulators and on real quantum hardware through AWS.
+
+The primary experiment, `advanced_coherence_experiment.py`, investigates the hypothesis that quantum circuits with local-only (spatial) interactions are more resilient to noise than circuits with long-range (non-spatial) interactions, especially as the number of qubits increases.
+
+## Key Findings
+
+The primary experiment confirms the hypothesis. Using a realistic depolarizing noise model, the simulation shows a clear, scale-dependent advantage for the spatially-local circuit architecture. At 6 qubits, the local circuit's fidelity is **~22% higher** than the non-local one, demonstrating emergent noise resilience.
+
+![Fidelity Scaling Results](figures/scaling_fidelity.png)
+
+## Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/basedlsg/hello-quantum-world.git
+    cd hello-quantum-world
+    ```
+
+2.  **Set up a Python environment:**
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+
+3.  **Install dependencies:**
+    The project now requires `scipy` for fidelity calculations.
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Configure AWS Credentials:**
+    To run on real AWS hardware or simulators (like SV1), configure your AWS credentials:
+    ```bash
+    aws configure
+    ```
+    You will need to provide your AWS Access Key ID, Secret Access Key, and default region.
+
+## Running the Experiment
+
+The main experiment script, `advanced_coherence_experiment.py`, is highly configurable via the command line.
+
+**Default Usage (Local Simulator):**
+This runs the scaling study from 2 to 6 qubits with default noise and trial settings. It should complete in a few minutes.
+```bash
+python advanced_coherence_experiment.py
+```
+
+**Custom Usage:**
+You can control the device, number of qubits, noise level, and statistical trials.
+```bash
+python advanced_coherence_experiment.py --device local_dm --max-qubits 8 --noise-p 0.01 --trials 20
+```
+
+**Running on AWS Hardware (e.g., SV1 Simulator):**
+To run on the managed SV1 simulator, use the `--device sv1` flag.
+```bash
+# Example: A quick run on SV1 for 2-4 qubits with 5 trials
+python advanced_coherence_experiment.py --device sv1 --max-qubits 4 --trials 5
+```
+*Note: Running on AWS hardware will incur costs.*
+
+### Command-Line Arguments
+*   `--device`: The device to run on. (default: `local_dm`, options: `sv1`, or a full AWS device ARN).
+*   `--max-qubits`: Maximum number of qubits for the scaling study. (default: 6)
+*   `--noise-p`: Probability of depolarizing noise. (default: 0.005)
+*   `--trials`: Number of trials for statistical analysis. (default: 10)
+
+## Project Structure
+```
+.
+├── .github/workflows/ci.yml   # CI pipeline for automated testing
+├── advanced_coherence_experiment.py # Main, configurable experiment script
+├── figures/
+│   └── scaling_fidelity.png   # Output plot of the results
+├── results/
+│   └── scaling_fidelity.csv   # Raw CSV data from the experiment
+├── requirements.txt           # Project dependencies
+└── ... (other legacy scripts and documents)
 ```

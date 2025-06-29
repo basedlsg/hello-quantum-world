@@ -1,0 +1,53 @@
+name: Python CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Local fidelity smoke test
+        run: |
+          python - <<'PY'
+          import numpy as np
+          # This is a bit of a hack to ensure the script can find the local module
+          # In a real package, you'd install with `pip install -e .`
+          import sys
+          sys.path.append('.')
+          from advanced_coherence_experiment import fidelity
+          
+          rho = np.eye(2)/2
+          sigma = rho
+          fid = fidelity(rho, sigma)
+          print(f"Fidelity: {fid}")
+          assert np.isclose(fid, 1.0), "Fidelity self-check failed"
+          print("Fidelity smoke test PASSED.")
+          PY
+
+      - name: Braket SV1 10-shot smoke job (cost-guarded)
+        # This job only runs on pull requests and if the required secrets are set.
+        if: github.event_name == 'pull_request' && env.AWS_ACCESS_KEY_ID != ''
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-1" # Or any other region where SV1 is available
+        run: |
+          echo "Running SV1 smoke test..."
+          python advanced_coherence_experiment.py --device sv1 --max-qubits 2 --trials 1
+          echo "SV1 smoke test completed." 
