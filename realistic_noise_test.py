@@ -100,6 +100,14 @@ def create_ideal_circuit_nonspatial(n_qubits: int) -> Circuit:
             circuit.cnot(i, j)
     return circuit
 
+def get_noisy_op_count(circuit: Circuit) -> int:
+    """Counts the number of single-qubit locations where noise would be applied."""
+    op_count = 0
+    for instruction in circuit.instructions:
+        # H, CNOT, etc.
+        op_count += len(instruction.target)
+    return op_count
+
 def run_realistic_noise_experiment():
     """Run the experiment with realistic T1/T2 noise models."""
     print("=== Realistic T1/T2 Noise Model Test ===")
@@ -114,6 +122,12 @@ def run_realistic_noise_experiment():
         # Create ideal circuits
         ideal_spatial = create_ideal_circuit_spatial(n_qubits)
         ideal_nonspatial = create_ideal_circuit_nonspatial(n_qubits)
+        
+        # Get properties
+        spatial_depth = ideal_spatial.depth
+        nonspatial_depth = ideal_nonspatial.depth
+        spatial_ops = get_noisy_op_count(ideal_spatial)
+        nonspatial_ops = get_noisy_op_count(ideal_nonspatial)
         
         # Create noisy circuits
         noisy_spatial = create_spatial_circuit_with_realistic_noise(n_qubits)
@@ -156,9 +170,17 @@ def run_realistic_noise_experiment():
         
         results.append({
             'n_qubits': n_qubits,
-            'spatial_fidelity': spatial_fidelity,
-            'nonspatial_fidelity': nonspatial_fidelity,
-            'spatial_advantage': spatial_fidelity - nonspatial_fidelity
+            'type': 'spatial',
+            'fidelity': spatial_fidelity,
+            'depth': spatial_depth,
+            'noisy_ops': spatial_ops
+        })
+        results.append({
+            'n_qubits': n_qubits,
+            'type': 'nonspatial',
+            'fidelity': nonspatial_fidelity,
+            'depth': nonspatial_depth,
+            'noisy_ops': nonspatial_ops
         })
     
     # Save results
@@ -169,10 +191,14 @@ def run_realistic_noise_experiment():
     # Analysis
     print("\n=== ANALYSIS: Realistic Noise vs Depolarizing ===")
     print("Spatial advantage by qubit count:")
-    for result in results:
-        n = result['n_qubits']
-        adv = result['spatial_advantage']
-        print(f"  {n} qubits: {adv:+.6f}")
+    
+    advantage_results = []
+    for n_qubits in range(2, 7):
+        spatial_fid = df[(df['n_qubits'] == n_qubits) & (df['type'] == 'spatial')]['fidelity'].iloc[0]
+        nonspatial_fid = df[(df['n_qubits'] == n_qubits) & (df['type'] == 'nonspatial')]['fidelity'].iloc[0]
+        advantage = spatial_fid - nonspatial_fid
+        advantage_results.append({'n_qubits': n_qubits, 'spatial_advantage': advantage})
+        print(f"  {n_qubits} qubits: {advantage:+.6f}")
     
     print("\n*** INTERPRETATION ***")
     print("Compare these results to our depolarizing noise results.")
