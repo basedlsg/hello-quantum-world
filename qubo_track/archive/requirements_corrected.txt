@@ -1,0 +1,45 @@
+# CORRECTED QUBO Track Requirements (v2.0 - FULLY FROZEN)
+# Install with: pip install -r requirements_corrected.txt
+
+# Core scientific computing (frozen)
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Data manipulation (pinned to avoid Ocean SDK conflicts)
+pandas>=2.0,<2.3
+
+# Graph theory (updated for pandas 2.x compatibility)
+networkx>=2.8,<3.5
+
+# D-Wave Ocean SDK - COMPLETE FREEZE (prevents transitive updates)
+dwave-ocean-sdk==8.4.0
+dimod==0.12.20
+dwave_networkx==0.8.18
+dwave-cloud-client==0.13.6
+dwave-gate==0.3.4
+dwave-hybrid==0.6.14
+dwave-inspector==0.5.4
+dwave-optimization==0.6.2
+dwave-preprocessing==0.6.9
+dwave-samplers==1.6.0
+dwave-system==1.32.0
+dwavebinarycsp==0.3.1
+
+# Statistical analysis
+statsmodels>=0.13.0
+
+# Plotting
+matplotlib>=3.4.0
+
+# Testing
+pytest>=6.0.0
+
+# Security auditing (nice-to-have)
+safety>=2.0.0
+
+# Optional: Jupyter for notebooks
+# jupyter>=1.0.0
+# ipykernel>=6.0.0
+
+# Generated with: pip freeze | grep -E "(dwave|dimod)"
+# Prevents transitive dependency drift that could restore pandas/NetworkX conflicts

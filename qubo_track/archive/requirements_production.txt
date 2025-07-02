@@ -1,0 +1,38 @@
+# PRODUCTION REQUIREMENTS: Exact versions for reproducible builds
+# Generated from working environment - no version ranges
+
+# Core scientific computing (exact versions)
+numpy==1.26.4
+scipy==1.15.3
+
+# Data manipulation (exact version - no ranges)
+pandas==2.0.3
+
+# Graph theory (exact version)
+networkx==3.4.2
+
+# D-Wave Ocean SDK - ALL SUB-PACKAGES EXACTLY PINNED
+dwave-ocean-sdk==8.4.0
+dimod==0.12.20
+dwave_networkx==0.8.18
+dwave-cloud-client==0.13.6
+dwave-gate==0.3.4
+dwave-hybrid==0.6.14
+dwave-inspector==0.5.4
+dwave-optimization==0.6.2
+dwave-preprocessing==0.6.9
+dwave-samplers==1.6.0
+dwave-system==1.32.0
+dwavebinarycsp==0.3.1
+
+# Statistical analysis (exact version)
+statsmodels==0.14.4
+
+# Plotting (exact version)
+matplotlib==3.9.2
+
+# Testing (exact version)
+pytest==8.3.3
+
+# Security auditing (pinned)
+safety==3.2.7
