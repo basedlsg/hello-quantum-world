@@ -65,7 +65,7 @@ class AdvancedCoherenceExperiment:
         else:
             raise ValueError("Invalid device specified. Use 'local_dm', 'sv1', or a valid AWS device ARN.")
         self.results = {}
-
+    
     def create_spatial_circuit(self, n_qubits: int, noise_prob: float = 0.0) -> Circuit:
         """
         Create a circuit representing 'spatial' quantum correlations.
@@ -108,7 +108,7 @@ class AdvancedCoherenceExperiment:
                     circuit.apply_gate_noise(noises.Depolarizing(probability=noise_prob))
                 
         return circuit
-
+    
     def measure_fidelity(self, ideal_circuit: Circuit, noisy_circuit: Circuit) -> float:
         """
         Measure fidelity by comparing the density matrices of the ideal and noisy circuits.
@@ -248,7 +248,7 @@ def main():
     
     save_results_to_csv(results, csv_path)
     plot_results(results, plot_path)
-
+    
     print("\n=== Experiment Complete ===")
 
 if __name__ == "__main__":

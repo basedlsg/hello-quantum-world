@@ -1,0 +1,8 @@
+# FMO 4-site coupling matrix from Adolphs-Renger 2006 (sites 1-4)
+# Units: cm^-1
+# Diagonal: site energies, Off-diagonal: coupling strengths
+12195,-104.1,5.1,-4.3
+-104.1,12255,30.8,8.2
+5.1,30.8,12050,-53.5
+-4.3,8.2,-53.5,12175
+

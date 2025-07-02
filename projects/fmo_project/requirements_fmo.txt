@@ -1,0 +1,5 @@
+braket-sdk~=1.60
+numpy
+pandas
+matplotlib
+networkx
