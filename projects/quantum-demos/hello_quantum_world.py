@@ -19,20 +19,20 @@ print("\n=== AWS Cloud Simulator ===")
 try:
     # Use the cloud simulator
     device = AwsDevice("arn:aws:braket:::device/quantum-simulator/amazon/sv1")
-    
+
     # Run the circuit (this approach doesn't require S3 bucket configuration)
     task = device.run(c, shots=1000)
-    
-    print(f'Task created with ID: {task.id}')
+
+    print(f"Task created with ID: {task.id}")
     print("Waiting for results...")
-    
+
     # Get the results
     result = task.result()
     print("Cloud simulator results:", result.measurement_probabilities)
-    
+
 except Exception as e:
     print("❌ AWS cloud simulator failed:", str(e))
     print("💡 You may need to:")
     print("   1. Visit https://console.aws.amazon.com/braket/home?#/permissions")
     print("   2. Create the AWSServiceRoleForAmazonBraket role")
-    print("   3. Ensure your IAM user has Braket permissions") 
+    print("   3. Ensure your IAM user has Braket permissions")

@@ -2,7 +2,7 @@
 
 ## Review Panel
 - **Dr. Sarah Chen**, Quantum Information Theory, MIT
-- **Prof. Michael Rodriguez**, Mesoscopic Physics, Stanford  
+- **Prof. Michael Rodriguez**, Mesoscopic Physics, Stanford
 - **Dr. Priya Patel**, Quantum Computing Hardware, IBM Research
 - **Prof. James Wilson**, Statistical Physics, Princeton
 
@@ -137,7 +137,7 @@
 - Provide mathematical definition of "spatial quantum effects" in circuit model
 - Show explicit circuit diagrams for all proposed experiments
 
-### Phase 2 Revision (Required)  
+### Phase 2 Revision (Required)
 - Include proper controls for hardware-specific effects
 - Statistical analysis plan with effect size estimates
 - Independent validation strategy
@@ -150,19 +150,19 @@
 
 ## Final Committee Vote
 
-**Approve with Major Revisions**: 3 votes  
-**Reject and Resubmit**: 1 vote  
-**Unconditional Approval**: 0 votes  
+**Approve with Major Revisions**: 3 votes
+**Reject and Resubmit**: 1 vote
+**Unconditional Approval**: 0 votes
 **Reject**: 0 votes
 
 **Overall Assessment**: Interesting ideas that require significant development before experimental implementation. The research question has merit, but the experimental approach needs substantial refinement to be scientifically rigorous and technically feasible.
 
-**Next Steps**: 
+**Next Steps**:
 1. Resubmit revised proposal addressing all technical concerns
 2. Consider collaboration with experimentalists in mesoscopic physics
 3. Start with smaller-scale theoretical/simulation study before hardware experiments
 
 ---
 
-*Review completed: [Date]*  
-*Committee Chair: Prof. James Wilson* 
+*Review completed: [Date]*
+*Committee Chair: Prof. James Wilson*

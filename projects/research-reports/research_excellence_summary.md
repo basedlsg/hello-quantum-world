@@ -24,7 +24,7 @@
 
 #### 1.3 Testable Hypotheses
 - **H1**: Spatial coherence enhancement (Effect size: 1.5)
-- **H2**: Scaling law distinction (Effect size: 0.5) 
+- **H2**: Scaling law distinction (Effect size: 0.5)
 - **H3**: Environmental coupling differences (Effect size: 0.7)
 
 #### Key Achievements
@@ -57,7 +57,7 @@
 **Duration**: Year 3 (12 months)
 **Focus**: Mechanistic studies and scaling laws
 
-### Stage 4: Advanced Applications  
+### Stage 4: Advanced Applications
 **Duration**: Year 4 (12 months)
 **Focus**: Algorithm development and error correction
 
@@ -199,4 +199,4 @@ The gold standard isn't about having perfect initial ideas—it's about:
 - **Embracing peer review**
 - **Committing to long-term excellence**
 
-**This is how transformative science is done: one careful, systematic step at a time.** 
+**This is how transformative science is done: one careful, systematic step at a time.**

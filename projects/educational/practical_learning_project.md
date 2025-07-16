@@ -14,7 +14,7 @@
 
 #### What We'll Actually Build
 1. **Simple spatial circuit**: 4 qubits with nearest-neighbor connections
-2. **Simple non-spatial circuit**: 4 qubits with all-to-all connections  
+2. **Simple non-spatial circuit**: 4 qubits with all-to-all connections
 3. **Noise comparison**: See how each responds to errors
 4. **Visualization tools**: Plot and understand the results
 
@@ -69,7 +69,7 @@ def create_spatial_chain(n_qubits):
 def create_nonspatial_mesh(n_qubits):
     """4-qubit mesh with all-to-all gates"""
     circuit = Circuit()
-    # Initialize superposition  
+    # Initialize superposition
     for i in range(n_qubits):
         circuit.h(i)
     # Connect everything to everything
@@ -88,11 +88,11 @@ def measure_state_fidelity(circuit, noise_prob=0.0):
     """Compare ideal vs noisy quantum states"""
     # Run ideal circuit
     ideal_result = device.run(circuit, shots=1000).result()
-    
+
     # Add noise and run again
     noisy_circuit = add_noise(circuit, noise_prob)
     noisy_result = device.run(noisy_circuit, shots=1000).result()
-    
+
     # Calculate how different they are
     return calculate_overlap(ideal_result, noisy_result)
 ```
@@ -117,7 +117,7 @@ nonspatial_fidelities = []
 for noise in noise_levels:
     spatial_fid = measure_state_fidelity(spatial_circuit, noise)
     nonspatial_fid = measure_state_fidelity(nonspatial_circuit, noise)
-    
+
     spatial_fidelities.append(spatial_fid)
     nonspatial_fidelities.append(nonspatial_fid)
 
@@ -138,11 +138,11 @@ results = {}
 for n in system_sizes:
     spatial_circuit = create_spatial_chain(n)
     nonspatial_circuit = create_nonspatial_mesh(n)
-    
+
     # Test with fixed noise level
     spatial_fid = measure_state_fidelity(spatial_circuit, 0.05)
     nonspatial_fid = measure_state_fidelity(nonspatial_circuit, 0.05)
-    
+
     results[n] = {'spatial': spatial_fid, 'nonspatial': nonspatial_fid}
 ```
 
@@ -159,19 +159,19 @@ for n in system_sizes:
 ```python
 class QuantumCircuitExplorer:
     """Tool for learning about quantum circuits"""
-    
+
     def __init__(self):
         self.device = LocalSimulator()
         self.results_history = []
-    
+
     def compare_circuit_types(self, n_qubits, noise_level):
         """Compare spatial vs non-spatial circuits"""
         # Implementation here
-        
+
     def visualize_quantum_state(self, circuit):
         """Show what the quantum state looks like"""
         # Implementation here
-        
+
     def run_learning_experiment(self, experiment_type):
         """Guided experiments for learning"""
         # Implementation here
@@ -190,7 +190,7 @@ class QuantumCircuitExplorer:
 Local Simulator: FREE (unlimited for ≤10 qubits)
 SV1 Simulator: $0.075 per task
 - Week 1: ~$5 (learning the interface)
-- Week 2: ~$15 (systematic experiments) 
+- Week 2: ~$15 (systematic experiments)
 - Week 3-4: ~$10 (final validation)
 Total AWS Cost: ~$30
 
@@ -230,7 +230,7 @@ Total Time: ~25 hours over 4 weeks
 
 ### Week 1 Success
 - [ ] Built and ran first quantum circuits
-- [ ] Measured quantum states successfully  
+- [ ] Measured quantum states successfully
 - [ ] Understood basic quantum gate operations
 - [ ] Comfortable with AWS Braket interface
 
@@ -282,4 +282,4 @@ Total Time: ~25 hours over 4 weeks
 - Develops marketable quantum computing skills
 - Provides foundation for future projects
 
-**This is realistic quantum learning: Start small, build understanding, create useful tools, and gradually expand your capabilities within practical constraints.** 
+**This is realistic quantum learning: Start small, build understanding, create useful tools, and gradually expand your capabilities within practical constraints.**

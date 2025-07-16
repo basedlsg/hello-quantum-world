@@ -235,7 +235,7 @@ Target Partners:
 ### Personnel (5-Year Total)
 ```
 Principal Investigator: 1 FTE × 5 years
-Postdoctoral Researchers: 3 FTE × 5 years  
+Postdoctoral Researchers: 3 FTE × 5 years
 Graduate Students: 5 FTE × 5 years
 Undergraduate Researchers: 10 FTE × 2 years each
 Visiting Scientists: 2 FTE × 1 year each
@@ -297,7 +297,7 @@ Total Budget: $1,800,000
 Risk: Theoretical predictions not confirmed experimentally
 Mitigation: Multiple theoretical approaches, extensive simulations
 
-Risk: Hardware limitations prevent key experiments  
+Risk: Hardware limitations prevent key experiments
 Mitigation: Multi-platform approach, collaboration with hardware developers
 
 Risk: Effects too small to measure reliably
@@ -342,4 +342,4 @@ This research program represents a systematic, rigorous approach to understandin
 
 The program is designed to be robust against technical setbacks while flexible enough to pursue unexpected discoveries. Success will be measured not just by publications and patents, but by the lasting impact on our understanding of quantum mechanics and its applications to technology and biology.
 
-**This is how transformative science is done: systematically, rigorously, and with clear vision of both fundamental understanding and practical impact.** 
+**This is how transformative science is done: systematically, rigorously, and with clear vision of both fundamental understanding and practical impact.**

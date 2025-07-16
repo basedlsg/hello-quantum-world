@@ -58,4 +58,4 @@ Users of this repository are encouraged to add entries to this log when they run
 - **Conclusion:** Hypothesis not confirmed. The flawed cost function did not lead to a measurably worse result in this specific noisy instance.
 
 **Notes:**
-- The convergence for both optimizers was very similar, suggesting the noise model created a landscape where the cost function error was not the dominant factor. 
+- The convergence for both optimizers was very similar, suggesting the noise model created a landscape where the cost function error was not the dominant factor.

@@ -83,7 +83,7 @@ This study addresses a gap in experimental quantum computing literature by provi
 ## Team Structure
 
 **Researcher 1 (Hardware Specialist)**: Device characterization, calibration protocols, error analysis
-**Researcher 2 (Algorithm Developer)**: Circuit design, optimization algorithms, software implementation  
+**Researcher 2 (Algorithm Developer)**: Circuit design, optimization algorithms, software implementation
 **Researcher 3 (Data Analyst)**: Statistical analysis, modeling, publication preparation
 
 ## Timeline
@@ -121,4 +121,4 @@ Results will contribute to the quantum computing community's understanding of ne
 | AWS Services | $100 | Data storage, analysis compute, monitoring |
 | **Total** | **$570** | **Standard experimental quantum computing budget** |
 
-This represents efficient use of research funds with clear deliverables and measurable outcomes. 
+This represents efficient use of research funds with clear deliverables and measurable outcomes.

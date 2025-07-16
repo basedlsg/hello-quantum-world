@@ -1,7 +1,7 @@
 # Independent Review: Quantum Reproducibility Case Study Repository
 
-**Report ID**: QEC-2025-001  
-**Date**: [Current Date]  
+**Report ID**: QEC-2025-001
+**Date**: [Current Date]
 **Subject**: Assessment of Educational and Scientific Relevance of the "qaoa-case-study" Open-Source Repository
 
 ---
@@ -62,4 +62,4 @@ The project successfully turns a potential research setback into a powerful and 
 **Review Committee:**
 *   Dr. Evelyn Reed
 *   Mr. Kenji Tanaka
-*   Dr. Ben Carter 
+*   Dr. Ben Carter

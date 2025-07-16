@@ -1,9 +1,9 @@
 # Institutional Review Report
 ## AWS Quantum Computing Research Study: Comprehensive Analysis and Findings
 
-**Reviewing Institution:** Institute for Advanced Quantum Research  
-**Review Committee Chair:** Dr. Jennifer Chen, Director of Research Integrity  
-**Review Date:** June 28, 2025  
+**Reviewing Institution:** Institute for Advanced Quantum Research
+**Review Committee Chair:** Dr. Jennifer Chen, Director of Research Integrity
+**Review Date:** June 28, 2025
 **Case ID:** IAQR-2025-QC-001
 
 ---
@@ -110,7 +110,7 @@ def calculate_cut(bitstring):
     bits = [int(b) for b in bitstring]
     cut = 0
     if bits[0] != bits[1]: cut += 1  # Edge (0,1)
-    if bits[1] != bits[2]: cut += 1  # Edge (1,2)  
+    if bits[1] != bits[2]: cut += 1  # Edge (1,2)
     if bits[0] != bits[2]: cut += 1  # Edge (0,2)
     return cut
 ```
@@ -249,13 +249,13 @@ This AWS quantum computing research study, while encountering significant reprod
 
 ---
 
-**Report Prepared By:**  
-Dr. Jennifer Chen, Director of Research Integrity  
-Institute for Advanced Quantum Research  
+**Report Prepared By:**
+Dr. Jennifer Chen, Director of Research Integrity
+Institute for Advanced Quantum Research
 Date: June 28, 2025
 
-**Review Committee:**  
-- Dr. Michael Thompson, Quantum Algorithm Standards  
-- Prof. Lisa Wang, Research Reproducibility  
-- Dr. Robert Kim, Scientific Integrity  
-- Prof. Elena Rodriguez, Quantum Computing Education 
+**Review Committee:**
+- Dr. Michael Thompson, Quantum Algorithm Standards
+- Prof. Lisa Wang, Research Reproducibility
+- Dr. Robert Kim, Scientific Integrity
+- Prof. Elena Rodriguez, Quantum Computing Education

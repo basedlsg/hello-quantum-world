@@ -118,7 +118,7 @@ Edges: [(0,1), (1,2), (0,2)]
 
 Bitstring Analysis:
 - '000': 0 cuts (both methods agree: 0.0)
-- '111': 0 cuts (both methods agree: 0.0)  
+- '111': 0 cuts (both methods agree: 0.0)
 - '001': 2 cuts (Original: 1.0, Verification: 2.0)
 - '010': 2 cuts (Original: 1.0, Verification: 2.0)
 - '011': 2 cuts (Original: 1.0, Verification: 2.0)
@@ -238,6 +238,6 @@ The repository serves as both a cautionary tale about implementation sensitivity
 
 ---
 
-*Repository Status: ✅ Complete and Ready for Use*  
-*License: MIT*  
-*Contributions: Welcome via GitHub* 
+*Repository Status: ✅ Complete and Ready for Use*
+*License: MIT*
+*Contributions: Welcome via GitHub*

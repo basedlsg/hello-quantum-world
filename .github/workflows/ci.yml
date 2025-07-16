@@ -32,7 +32,7 @@ jobs:
           import sys
           sys.path.append('.')
           from advanced_coherence_experiment import fidelity
-          
+
           rho = np.eye(2)/2
           sigma = rho
           fid = fidelity(rho, sigma)
@@ -51,4 +51,4 @@ jobs:
         run: |
           echo "Running SV1 smoke test..."
           python advanced_coherence_experiment.py --device sv1 --max-qubits 2 --trials 1
-          echo "SV1 smoke test completed." 
+          echo "SV1 smoke test completed."

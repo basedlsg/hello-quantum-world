@@ -1,5 +1,4 @@
-"""
-End-to-End QAOA Execution on Amazon Braket Cloud Simulator
+"""End-to-End QAOA Execution on Amazon Braket Cloud Simulator
 
 This script serves as the final validation of the quantum reproducibility
 case study. It takes the validated classical cost function and runs a full
@@ -19,33 +18,38 @@ Author: Quantum Reproducibility Case Study Team
 License: MIT
 """
 
-import numpy as np
-import networkx as nx
-from braket.circuits import Circuit, Observable, observables
-from braket.aws import AwsDevice
-from braket.devices import LocalSimulator
-from typing import Dict, List, Tuple
+import os
 
 # Add parent directory to path to import our local modules
 import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+from typing import Dict, List, Tuple
+
+import networkx as nx
+import numpy as np
+from braket.aws import AwsDevice
+from braket.circuits import Circuit, Observable, observables
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "src")))
 
 from maxcut_implementations.canonical_maxcut import CanonicalMaxCut
 
 
-def create_qaoa_circuit(graph: nx.Graph, p: int, gamma: List[float], beta: List[float]) -> Circuit:
-    """
-    Creates a QAOA circuit for the MaxCut problem.
+def create_qaoa_circuit(
+    graph: nx.Graph, p: int, gamma: List[float], beta: List[float]
+) -> Circuit:
+    """Creates a QAOA circuit for the MaxCut problem.
 
     Args:
+    ----
         graph: The problem graph.
         p: The number of QAOA layers.
         gamma: The p angles for the cost layer.
         beta: The p angles for the mixer layer.
 
     Returns:
+    -------
         A Braket Circuit object for the QAOA algorithm.
+
     """
     n_qubits = len(graph.nodes)
     circuit = Circuit()
@@ -69,25 +73,31 @@ def create_qaoa_circuit(graph: nx.Graph, p: int, gamma: List[float], beta: List[
 
 
 def get_maxcut_cost_hamiltonian(graph: nx.Graph) -> Observable:
-    """
-    Constructs the MaxCut cost Hamiltonian as a Braket Observable.
+    """Constructs the MaxCut cost Hamiltonian as a Braket Observable.
     The Hamiltonian is H_C = 0.5 * sum(I - Z_i Z_j) for edges (i,j).
     Its expectation value is the number of cut edges.
 
     Args:
+    ----
         graph: The problem graph.
 
     Returns:
+    -------
         A Braket Observable representing the cost Hamiltonian.
+
     """
     hamiltonian_terms = []
     for i, j in graph.edges:
         id_term = observables.I(i)
         z_term = observables.Z(i) @ observables.Z(j)
         hamiltonian_terms.append(0.5 * (id_term - z_term))
-    
+
     # The start=... ensures that sum() on an empty list returns a valid Observable
-    return sum(hamiltonian_terms, start=observables.I(0) * 0) if hamiltonian_terms else observables.I(0) * 0
+    return (
+        sum(hamiltonian_terms, start=observables.I(0) * 0)
+        if hamiltonian_terms
+        else observables.I(0) * 0
+    )
 
 
 def run_qaoa_on_braket(
@@ -95,14 +105,14 @@ def run_qaoa_on_braket(
     graph: nx.Graph,
     p: int,
     params: Tuple[List[float], List[float]],
-    shots: int = 1000
+    shots: int = 1000,
 ) -> Dict:
-    """
-    Runs the QAOA circuit on a Braket device and returns the results.
+    """Runs the QAOA circuit on a Braket device and returns the results.
     This version requests only measurement samples and calculates the
     expectation value locally, avoiding Hamiltonian construction issues.
 
     Args:
+    ----
         device_arn: The ARN of the Braket device to use.
         graph: The problem graph.
         p: The number of QAOA layers.
@@ -110,7 +120,9 @@ def run_qaoa_on_braket(
         shots: The number of measurement shots.
 
     Returns:
+    -------
         A dictionary containing the results.
+
     """
     gamma, beta = params
     device = AwsDevice(device_arn)
@@ -133,25 +145,27 @@ def run_qaoa_on_braket(
         "task_arn": task.id,
         "parameters": {"gamma": gamma, "beta": beta, "p": p},
         "shots": shots,
-        "measurement_counts": measurement_counts
+        "measurement_counts": measurement_counts,
     }
 
 
 def analyze_results(results: Dict, graph_edges: List[Tuple[int, int]]) -> Dict:
-    """
-    Analyzes the results by calculating the expectation value from
+    """Analyzes the results by calculating the expectation value from
     the measurement outcomes.
 
     Args:
+    ----
         results: The dictionary returned by run_qaoa_on_braket.
         graph_edges: The list of graph edges.
 
     Returns:
+    -------
         A dictionary with the analysis.
+
     """
     verifier = CanonicalMaxCut(nx.Graph(graph_edges))
-    total_shots = results['shots']
-    measurement_counts = results['measurement_counts']
+    total_shots = results["shots"]
+    measurement_counts = results["measurement_counts"]
 
     # Calculate expected cut value classically from the bitstring measurements
     classical_cut_total = 0
@@ -163,7 +177,7 @@ def analyze_results(results: Dict, graph_edges: List[Tuple[int, int]]) -> Dict:
 
     return {
         "calculated_expectation_value": classical_exp_val,
-        "conclusion": "SUCCESS: Cloud execution completed and expectation value calculated."
+        "conclusion": "SUCCESS: Cloud execution completed and expectation value calculated.",
     }
 
 
@@ -192,19 +206,25 @@ if __name__ == "__main__":
             graph=problem_graph,
             p=p_layers,
             params=(gamma_params, beta_params),
-            shots=1000
+            shots=1000,
         )
 
         # Analyze the results for consistency
         analysis = analyze_results(run_results, GRAPH_EDGES)
 
         print("\n--- Analysis and Verification ---")
-        print(f"Classically-calculated Expectation Value from Cloud Results: {analysis['calculated_expectation_value']:.6f}")
+        print(
+            f"Classically-calculated Expectation Value from Cloud Results: {analysis['calculated_expectation_value']:.6f}"
+        )
         print(f"Conclusion: {analysis['conclusion']}")
 
     except Exception as e:
-        print(f"\n--- An Error Occurred ---")
+        print("\n--- An Error Occurred ---")
         print(f"Error: {e}")
-        print("This could be due to missing AWS credentials, permissions, or network issues.")
+        print(
+            "This could be due to missing AWS credentials, permissions, or network issues."
+        )
         print("Please ensure your AWS environment is configured for Braket.")
-        print("See: https://docs.aws.amazon.com/braket/latest/developerguide/braket-configure-environment.html") 
+        print(
+            "See: https://docs.aws.amazon.com/braket/latest/developerguide/braket-configure-environment.html"
+        )

@@ -59,4 +59,4 @@ The histogram below shows the distribution of the raw fidelity values for the 10
 ### 4.4. Fidelity Metric Justification (Supplementary Figure 2)
 The plot below shows that for a representative circuit from this study, the difference between the computationally-intensive Uhlmann fidelity and the Hilbert-Schmidt overlap we use as a proxy is negligible, justifying our choice of metric.
 
-![Fidelity Metric Comparison](figures/supplementary_metric_comparison.png) 
+![Fidelity Metric Comparison](figures/supplementary_metric_comparison.png)

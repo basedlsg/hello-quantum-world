@@ -1,0 +1,7 @@
+# High-level dependencies for the FMO project
+amazon-braket-sdk
+matplotlib
+numpy
+pandas
+scipy
+pip-tools 

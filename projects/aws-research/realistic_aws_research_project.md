@@ -2,9 +2,9 @@
 ## **"Spatial Quantum Coherence vs Entanglement Fragility: A Comparative Study on NISQ Hardware"**
 
 ### **PROJECT OVERVIEW**
-**Duration:** 1 Month (4 weeks)  
-**Team Size:** 3 Researchers  
-**Total Budget:** $2,000-3,000 USD  
+**Duration:** 1 Month (4 weeks)
+**Team Size:** 3 Researchers
+**Total Budget:** $2,000-3,000 USD
 **Focus:** Investigating why spatial quantum effects are robust while entanglement is fragile
 
 ---
@@ -44,13 +44,13 @@ Based on our earlier discussions, we hypothesize that:
 ## **🧪 EXPERIMENTAL DESIGN**
 
 ### **Week 1: Baseline Entanglement Studies**
-**Objective:** Establish entanglement decoherence baselines  
-**Hardware:** IonQ Aria (highest fidelity), Rigetti Ankaa  
+**Objective:** Establish entanglement decoherence baselines
+**Hardware:** IonQ Aria (highest fidelity), Rigetti Ankaa
 **Budget:** ~$400
 
 **Experiments:**
 1. **2-Qubit Bell States** (100 shots × 10 circuits = $30.30 on IonQ)
-2. **3-Qubit GHZ States** (100 shots × 10 circuits = $30.30 on IonQ)  
+2. **3-Qubit GHZ States** (100 shots × 10 circuits = $30.30 on IonQ)
 3. **4-Qubit Entangled States** (100 shots × 10 circuits = $30.30 on IonQ)
 4. **Decoherence Time Studies** (varying delay times)
 5. **Noise Characterization** using DM1 simulator
@@ -58,8 +58,8 @@ Based on our earlier discussions, we hypothesize that:
 **Deliverable:** Entanglement fragility curves vs system size
 
 ### **Week 2: Spatial Quantum Array Studies**
-**Objective:** Test spatial coherence in neutral atom arrays  
-**Hardware:** QuEra Aquila (256 atoms!)  
+**Objective:** Test spatial coherence in neutral atom arrays
+**Hardware:** QuEra Aquila (256 atoms!)
 **Budget:** ~$600
 
 **Experiments:**
@@ -72,12 +72,12 @@ Based on our earlier discussions, we hypothesize that:
 **Key Question:** Do larger spatial arrays become MORE stable?
 
 ### **Week 3: Comparative Decoherence Analysis**
-**Objective:** Direct comparison of decoherence mechanisms  
-**Hardware:** Multiple devices for cross-validation  
+**Objective:** Direct comparison of decoherence mechanisms
+**Hardware:** Multiple devices for cross-validation
 **Budget:** ~$500
 
 **Experiments:**
-1. **Same Algorithm, Different Hardware** 
+1. **Same Algorithm, Different Hardware**
    - Run identical circuits on IonQ, Rigetti, IQM
    - Compare decoherence rates
 2. **Environmental Noise Studies**
@@ -88,8 +88,8 @@ Based on our earlier discussions, we hypothesize that:
 **Deliverable:** Comprehensive decoherence comparison
 
 ### **Week 4: Practical Algorithm Testing**
-**Objective:** Test which approach gives quantum advantage  
-**Hardware:** Best-performing devices from previous weeks  
+**Objective:** Test which approach gives quantum advantage
+**Hardware:** Best-performing devices from previous weeks
 **Budget:** ~$600
 
 **Experiments:**
@@ -144,14 +144,14 @@ Based on our earlier discussions, we hypothesize that:
 - **Responsibilities:** Device calibration, error analysis, hardware-specific protocols
 - **AWS Resources:** Direct QPU access, hardware monitoring tools
 
-### **Researcher 2: Algorithm Developer**  
+### **Researcher 2: Algorithm Developer**
 - **Focus:** Circuit design and algorithm implementation
 - **Responsibilities:** Circuit optimization, algorithm development, simulation studies
 - **AWS Resources:** Hybrid Jobs, high-performance simulators
 
 ### **Researcher 3: Data Analyst**
 - **Focus:** Results analysis and theoretical modeling
-- **Responsibilities:** Statistical analysis, theoretical modeling, publication preparation  
+- **Responsibilities:** Statistical analysis, theoretical modeling, publication preparation
 - **AWS Resources:** EC2 instances for data analysis, visualization tools
 
 ---
@@ -231,7 +231,7 @@ print(f"Total cost: ${tracker.qpu_tasks_cost():.2f}")
 - [ ] **Identify crossover points** where spatial effects dominate
 - [ ] **Demonstrate practical advantage** for specific applications
 
-### **Technical Success**  
+### **Technical Success**
 - [ ] **Stay within budget** (<$600 total)
 - [ ] **Complete all experiments** within 4-week timeline
 - [ ] **Achieve statistical significance** in all measurements
@@ -248,10 +248,10 @@ print(f"Total cost: ${tracker.qpu_tasks_cost():.2f}")
 This project could **revolutionize quantum computing strategy** by:
 
 1. **Shifting focus** from fragile entanglement to robust spatial effects
-2. **Guiding hardware development** toward more practical architectures  
+2. **Guiding hardware development** toward more practical architectures
 3. **Informing investment decisions** in quantum technology
 4. **Opening new research directions** in quantum advantage
 
 **The fundamental question:** *Are we pursuing the wrong approach to quantum computing?*
 
-This research will provide **data-driven answers** using real quantum hardware! 🚀 
+This research will provide **data-driven answers** using real quantum hardware! 🚀

@@ -9,7 +9,7 @@ We successfully executed a 4-week quantum computing research study using real AW
 ### Budget Performance
 - **Total Spent**: $0.60 out of $570.00 budget (0.1% utilization)
 - **Duration**: 19.6 seconds (not 4 weeks as planned)
-- **Cost Breakdown**: 
+- **Cost Breakdown**:
   - SV1 Cloud Simulator: $0.45 (3 tasks)
   - Local Simulator: $0.00 (multiple tasks)
   - Real QPUs: $0.00 (access denied)
@@ -43,7 +43,7 @@ The biggest finding was that **real QPU access requires user agreements** that w
 
 **Error Message:**
 ```
-AccessDeniedException: User agreement has not been accepted for [account]. 
+AccessDeniedException: User agreement has not been accepted for [account].
 Please visit console to accept the user agreement.
 ```
 
@@ -93,11 +93,11 @@ The peer review committee's criticism about "limited statistical power with only
 
 The committee's concerns were largely addressed:
 
-✅ **Statistical Power**: Achieved 1,000 shots (exceeded their 1,000 shot recommendation)  
-✅ **Budget Efficiency**: Completed study for $0.60 instead of $15,000 they recommended  
-✅ **Algorithmic Scope**: Successfully tested QAOA optimization algorithms  
-✅ **Classical Baselines**: Demonstrated exponential classical scaling limits  
-❌ **Real Hardware Access**: Blocked by administrative requirements  
+✅ **Statistical Power**: Achieved 1,000 shots (exceeded their 1,000 shot recommendation)
+✅ **Budget Efficiency**: Completed study for $0.60 instead of $15,000 they recommended
+✅ **Algorithmic Scope**: Successfully tested QAOA optimization algorithms
+✅ **Classical Baselines**: Demonstrated exponential classical scaling limits
+❌ **Real Hardware Access**: Blocked by administrative requirements
 
 ## Practical Recommendations for Quantum Researchers
 
@@ -150,4 +150,4 @@ This exercise demonstrated that:
 
 The peer review committee's assessment was partially correct about scientific merit, but completely wrong about budget requirements. Real quantum computing research can be conducted effectively with minimal resources, proper planning, and realistic expectations.
 
-**Final Assessment**: This was excellent practice for understanding the gap between theoretical research proposals and practical implementation realities. 
+**Final Assessment**: This was excellent practice for understanding the gap between theoretical research proposals and practical implementation realities.

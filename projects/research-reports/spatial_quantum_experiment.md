@@ -45,7 +45,7 @@ Duration: 2-3 weeks
 #### Experiment 2A: Scale-Dependent Coherence
 ```
 Objective: Test coherence scaling with system size
-Systems: 
+Systems:
 - Non-spatial: 2, 4, 8, 16 qubit entangled states
 - Spatial: Simulated confined systems of equivalent complexity
 Measurement: Coherence time vs. system size
@@ -207,4 +207,4 @@ spatial_quantum_experiment/
 
 This experimental program represents a systematic investigation into fundamental questions about quantum coherence in spatially-confined systems. While the results may not validate all initial hypotheses, the systematic approach will contribute valuable data to the quantum information science community and potentially inform future technological developments.
 
-The experimental design is conservative, achievable with current technology, and designed to produce meaningful results regardless of the specific outcomes. Success will be measured by the quality and rigor of the scientific investigation rather than confirmation of any particular theoretical framework. 
+The experimental design is conservative, achievable with current technology, and designed to produce meaningful results regardless of the specific outcomes. Success will be measured by the quality and rigor of the scientific investigation rather than confirmation of any particular theoretical framework.

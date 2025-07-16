@@ -1,5 +1,4 @@
-"""
-QAOA Performance Analysis with Noisy Simulation
+"""QAOA Performance Analysis with Noisy Simulation
 
 This script addresses the critique that the case study was limited to
 noiseless simulation. It investigates the impact of the cost function
@@ -26,13 +25,12 @@ Author: Quantum Reproducibility Case Study Team
 License: MIT
 """
 
-import numpy as np
 import networkx as nx
-from scipy.optimize import minimize
-import matplotlib.pyplot as plt
-
-from braket.circuits import Circuit, Noise
+import numpy as np
+from braket.circuits import Circuit
 from braket.devices import LocalSimulator
+from scipy.optimize import minimize
+
 
 def create_qaoa_circuit(graph, p, gamma, beta):
     """Creates the QAOA circuit with noise channels."""
@@ -54,11 +52,12 @@ def create_qaoa_circuit(graph, p, gamma, beta):
 
     return circuit
 
+
 def get_qaoa_objective_function(graph, p, noisy_simulator, max_cut_impl):
-    """
-    Returns a function that calculates the expected cut value for given
+    """Returns a function that calculates the expected cut value for given
     QAOA angles.
     """
+
     def objective_function(params):
         # Split params into gamma and beta
         gamma = params[:p]
@@ -68,17 +67,17 @@ def get_qaoa_objective_function(graph, p, noisy_simulator, max_cut_impl):
         qaoa_circuit = create_qaoa_circuit(graph, p, gamma, beta)
         # We need probabilities to calculate the classical expectation
         qaoa_circuit.probability()
-        
+
         result = noisy_simulator.run(qaoa_circuit, shots=0).result()
         probabilities = result.values[0]
 
         # Calculate expectation value using the provided MaxCut implementation
         expected_value = 0
         for i, prob in enumerate(probabilities):
-            bitstring = format(i, f'0{graph.number_of_nodes()}b')
+            bitstring = format(i, f"0{graph.number_of_nodes()}b")
             cut_value = max_cut_impl.calculate_cut_value(bitstring)
             expected_value += prob * cut_value
-            
+
         # We are minimizing, so we return the expectation value.
         # For CanonicalMaxCut, a lower value (more negative) is better.
         # For OriginalMaxCut, the optimizer will also minimize its value.
@@ -86,9 +85,9 @@ def get_qaoa_objective_function(graph, p, noisy_simulator, max_cut_impl):
 
     return objective_function
 
+
 def run_noisy_analysis():
-    """
-    Runs the full noisy analysis and compares the performance of optimizations
+    """Runs the full noisy analysis and compares the performance of optimizations
     using the canonical vs. the original flawed cost function.
     """
     print("=" * 70)
@@ -102,28 +101,32 @@ def run_noisy_analysis():
     graph.add_edge(1, 2, weight=2.0)
     graph.add_edge(2, 3, weight=0.5)
     graph.add_edge(3, 0, weight=1.0)
-    
+
     # 2. Setup noisy simulator
     noisy_device = LocalSimulator(backend="braket_dm")
-    
+
     # 3. Instantiate MaxCut implementations
     canonical_impl = CanonicalMaxCut(graph)
     original_impl = OriginalMaxCut(graph)
 
     p_layers = 2
     initial_params = np.random.rand(2 * p_layers)
-    
+
     # --- Run Optimizations ---
     print("Running optimization with CANONICAL cost function...")
-    canonical_objective = get_qaoa_objective_function(graph, p_layers, noisy_device, canonical_impl)
-    canonical_res = minimize(canonical_objective, initial_params, method='COBYLA')
+    canonical_objective = get_qaoa_objective_function(
+        graph, p_layers, noisy_device, canonical_impl
+    )
+    canonical_res = minimize(canonical_objective, initial_params, method="COBYLA")
     print("Canonical optimization complete.")
 
     print("\nRunning optimization with FLAWED (Original) cost function...")
-    original_objective = get_qaoa_objective_function(graph, p_layers, noisy_device, original_impl)
-    original_res = minimize(original_objective, initial_params, method='COBYLA')
+    original_objective = get_qaoa_objective_function(
+        graph, p_layers, noisy_device, original_impl
+    )
+    original_res = minimize(original_objective, initial_params, method="COBYLA")
     print("Flawed optimization complete.")
-    
+
     # --- Analyze and Compare Results ---
     print("\n" + "=" * 70)
     print("                 Comparison of Optimization Results")
@@ -149,8 +152,12 @@ def run_noisy_analysis():
 
     print(f"{'Metric':<25} | {'Canonical Optimizer':<25} | {'Flawed Optimizer'}")
     print("-" * 70)
-    print(f"{'Final Cost Reported':<25} | {final_cost_canonical:<25.4f} | {final_cost_original:<.4f} (Incorrectly Scaled)")
-    print(f"{'True Solution Quality':<25} | {final_cost_canonical:<25.4f} | {true_cost_of_original_solution:<.4f}")
+    print(
+        f"{'Final Cost Reported':<25} | {final_cost_canonical:<25.4f} | {final_cost_original:<.4f} (Incorrectly Scaled)"
+    )
+    print(
+        f"{'True Solution Quality':<25} | {final_cost_canonical:<25.4f} | {true_cost_of_original_solution:<.4f}"
+    )
     print("-" * 70)
     print(f"True Optimal Cut Value: {true_optimal_cut:.4f}")
     print(f"Approximation Ratio (Canonical): {approx_ratio_canonical:.3f}")
@@ -160,17 +167,25 @@ def run_noisy_analysis():
     print("\nConclusion:")
     if approx_ratio_canonical > approx_ratio_original:
         print("✅ Hypothesis Confirmed: The flawed cost function misled the optimizer.")
-        print("   It found a solution with a worse approximation ratio than the canonical one.")
+        print(
+            "   It found a solution with a worse approximation ratio than the canonical one."
+        )
     else:
-        print("Hypothesis Not Confirmed: For this instance, the flawed cost function did not")
-        print("lead to a measurably worse result. This can happen due to noise or optimization landscape.")
+        print(
+            "Hypothesis Not Confirmed: For this instance, the flawed cost function did not"
+        )
+        print(
+            "lead to a measurably worse result. This can happen due to noise or optimization landscape."
+        )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Add project root to path to allow imports
-    import sys
     import os
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    import sys
+
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
     from src.maxcut_implementations.canonical_maxcut import CanonicalMaxCut
     from src.maxcut_implementations.original_maxcut import OriginalMaxCut
-    
-    run_noisy_analysis() 
+
+    run_noisy_analysis()

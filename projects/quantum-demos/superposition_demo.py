@@ -10,12 +10,12 @@ for i in range(5):
     c = Circuit()
     c.x(0)  # Classical bit flip (always 1)
     c.probability()
-    
+
     device = LocalSimulator()
     result = device.run(c, shots=100).result()
     print(f"Run {i+1}: {result.measurement_probabilities}")
 
-print("\n" + "="*50 + "\n")
+print("\n" + "=" * 50 + "\n")
 
 # Test 2: Quantum superposition (shows interference)
 print("Quantum superposition test:")
@@ -24,12 +24,12 @@ for i in range(5):
     c = Circuit()
     c.h(0)  # Hadamard gate creates superposition
     c.probability()
-    
+
     device = LocalSimulator()
     result = device.run(c, shots=100).result()
     print(f"Run {i+1}: {result.measurement_probabilities}")
 
-print("\n" + "="*50 + "\n")
+print("\n" + "=" * 50 + "\n")
 
 # Test 3: Quantum interference (PROOF of superposition)
 print("Quantum interference test (the smoking gun!):")
@@ -39,10 +39,10 @@ for i in range(5):
     c.h(0)  # Create superposition
     c.h(0)  # Interfere with itself - should cancel back to |0⟩
     c.probability()
-    
+
     device = LocalSimulator()
     result = device.run(c, shots=100).result()
     print(f"Run {i+1}: {result.measurement_probabilities}")
 
 print("\nIf we get 100% |0⟩, superposition MUST have existed!")
-print("Classical physics can't explain this interference pattern.") 
+print("Classical physics can't explain this interference pattern.")

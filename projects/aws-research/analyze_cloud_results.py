@@ -1,5 +1,4 @@
-"""
-Advanced Analysis of AWS Cloud Execution Results
+"""Advanced Analysis of AWS Cloud Execution Results
 
 This script performs a detailed statistical analysis of the raw measurement
 data obtained from an Amazon Braket cloud execution. It addresses the critique
@@ -19,23 +18,26 @@ Methodology:
 """
 
 import json
-import numpy as np
-import networkx as nx
 import os
 import sys
 from collections import Counter
 
+import networkx as nx
+import numpy as np
+
 # Ensure the src directory is in the path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "src")))
 from maxcut_implementations.canonical_maxcut import CanonicalMaxCut
 
-def analyze_results(log_file='aws_cloud_result.json', bootstrap_iterations=5000):
-    """
-    Analyzes the cloud results, including bootstrap error estimation.
+
+def analyze_results(log_file="aws_cloud_result.json", bootstrap_iterations=5000):
+    """Analyzes the cloud results, including bootstrap error estimation.
 
     Args:
+    ----
         log_file (str): The path to the AWS results JSON file.
         bootstrap_iterations (int): The number of bootstrap samples to generate.
+
     """
     if not os.path.exists(log_file):
         print(f"Error: Log file not found at '{log_file}'.")
@@ -48,17 +50,19 @@ def analyze_results(log_file='aws_cloud_result.json', bootstrap_iterations=5000)
     graph.add_edges_from([(0, 1), (1, 2), (0, 2)])
     maxcut_calculator = CanonicalMaxCut(graph)
 
-    with open(log_file, 'r') as f:
+    with open(log_file, "r") as f:
         log_data = json.load(f)
 
     # The log file contains a list of individual measurements.
-    raw_measurements = ["".join(map(str, m)) for m in log_data['measurements']]
+    raw_measurements = ["".join(map(str, m)) for m in log_data["measurements"]]
     total_shots = len(raw_measurements)
     measurement_counts = Counter(raw_measurements)
 
     # Convert to a list of individual cut values for bootstrapping
-    all_cut_values = np.array([maxcut_calculator.calculate_cut_value(bs) for bs in raw_measurements])
-    
+    all_cut_values = np.array(
+        [maxcut_calculator.calculate_cut_value(bs) for bs in raw_measurements]
+    )
+
     mean_exp_val = np.mean(all_cut_values)
 
     # --- 2. Bootstrap Analysis ---
@@ -67,7 +71,9 @@ def analyze_results(log_file='aws_cloud_result.json', bootstrap_iterations=5000)
     if total_shots > 0:
         for _ in range(bootstrap_iterations):
             # Create a bootstrap sample by drawing with replacement
-            resample_indices = np.random.choice(len(all_cut_values), size=len(all_cut_values), replace=True)
+            resample_indices = np.random.choice(
+                len(all_cut_values), size=len(all_cut_values), replace=True
+            )
             resample_values = all_cut_values[resample_indices]
             bootstrap_exp_vals.append(np.mean(resample_values))
 
@@ -89,5 +95,6 @@ def analyze_results(log_file='aws_cloud_result.json', bootstrap_iterations=5000)
         print(f"  - State |{bitstring}>: {count} counts")
     print("=" * 70)
 
-if __name__ == '__main__':
-    analyze_results() 
+
+if __name__ == "__main__":
+    analyze_results()

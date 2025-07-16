@@ -3,20 +3,20 @@
 
 **Review Panel:**
 - Dr. Sarah Chen, Quantum Error Correction, MIT
-- Prof. Michael Rodriguez, Neutral Atom Systems, University of Maryland  
+- Prof. Michael Rodriguez, Neutral Atom Systems, University of Maryland
 - Dr. Priya Patel, NISQ Algorithms, IBM Research
 - Prof. James Liu, Quantum Complexity Theory, Stanford
 
-**Review Date:** January 2025  
+**Review Date:** January 2025
 **Funding Agency:** NSF Quantum Information Science Program
 
 ---
 
 ## Executive Summary
 
-**Overall Assessment: FUNDED with Minor Revisions**  
-**Scientific Merit Score: 7.2/10**  
-**Technical Feasibility Score: 8.1/10**  
+**Overall Assessment: FUNDED with Minor Revisions**
+**Scientific Merit Score: 7.2/10**
+**Technical Feasibility Score: 8.1/10**
 **Budget Justification Score: 8.5/10**
 
 The proposed comparative study addresses a legitimate gap in experimental quantum computing literature. While the research questions are well-formulated and the methodology is sound, the committee has concerns about the novelty of expected results and statistical power given the limited budget.
@@ -168,7 +168,7 @@ The committee recommends funding with the following mandatory revisions:
 
 ### Required Changes:
 1. **Increase shot counts** to minimum 1000 per measurement
-2. **Add theoretical framework** predicting expected scaling differences  
+2. **Add theoretical framework** predicting expected scaling differences
 3. **Include classical baselines** for all quantum algorithms tested
 4. **Expand statistical analysis** with proper power calculations
 5. **Add contingency protocols** for hardware failures
@@ -209,5 +209,5 @@ The "gap in literature" claimed by the authors is not compelling - the differenc
 
 ---
 
-**Final Committee Vote:** 3 in favor, 1 opposed  
-**Funding Decision:** APPROVED with conditions 
+**Final Committee Vote:** 3 in favor, 1 opposed
+**Funding Decision:** APPROVED with conditions
